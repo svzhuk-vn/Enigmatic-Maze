@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameManager : MonoBehaviour
 {
 
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] trueObjects; //в инспекторе устанавливаем friendly path
     [Header("Set wrong way")]
     public GameObject[] falseObjects; //в инспекторе устанавливаем enemy
+    public GameObject startPoint;
+    public GameObject endPoint;
     [SerializeField] private float time = 10;
     [SerializeField] private int nextStep = 0;
     //private ItemManager script;
@@ -16,16 +19,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ChangeActive());
+        StartCoroutine(ChangeActive()); 
         time = (float)trueObjects.Length;
         Invoke("ShowFalseObjects", time);
-        trueObjects[0].GetComponent<BoxCollider2D>().enabled = true; //start point
+        //trueObjects[0].GetComponent<BoxCollider2D>().enabled = true; //start point
+        startPoint.GetComponent<BoxCollider2D>().enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     IEnumerator ChangeActive()
