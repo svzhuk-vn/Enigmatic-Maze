@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class ItemManager : MonoBehaviour
 {
 
     public bool condition;
-    public GameManager gameManager;
-    public GameObject endPath;
+    GameManager gameManager;
+    GameObject endPath;
 
     // Start is called before the first frame update
     void Start()
