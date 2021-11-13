@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] trueObjects; //в инспекторе устанавливаем friendly path
     [Header("Set wrong way")]
     public GameObject[] falseObjects; //в инспекторе устанавливаем enemy
+    public GameObject startPoint;
     public GameObject endPoint;
     [SerializeField] private float time = 10;
     [SerializeField] private int nextStep = 0;
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ChangeActive()); 
         time = (float)trueObjects.Length;
         Invoke("ShowFalseObjects", time);
-        trueObjects[0].GetComponent<BoxCollider2D>().enabled = true; //start point
+        //trueObjects[0].GetComponent<BoxCollider2D>().enabled = true; //start point
+        startPoint.GetComponent<BoxCollider2D>().enabled = true;
     }
 
     // Update is called once per frame
