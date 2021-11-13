@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] trueObjects; //в инспекторе устанавливаем правильный путь
-    private GameObject[] falseObjects;
+
+    [Header("Set right way")]
+    public GameObject[] trueObjects; //в инспекторе устанавливаем friendly path
+    [Header("Set wrong way")]
+    public GameObject[] falseObjects; //в инспекторе устанавливаем enemy
     [SerializeField] private float time = 10;
+    [SerializeField] private int nextStep = 0;
+    //private ItemManager script;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +19,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ChangeActive());
         time = (float)trueObjects.Length;
         Invoke("ShowFalseObjects", time);
+        trueObjects[0].GetComponent<BoxCollider2D>().enabled = true; //start point
     }
 
     // Update is called once per frame
@@ -34,6 +40,7 @@ public class GameManager : MonoBehaviour
             //gameObjects[i].GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
             //trueObjects[i].SetActive(true);
             trueObjects[i].GetComponent<SpriteRenderer>().enabled = true;
+            trueObjects[i].GetComponent<ItemManager>().condition = true; //устанавливаем состояние для frienly square
             yield return new WaitForSeconds(1f);
         }                     
 
@@ -41,10 +48,21 @@ public class GameManager : MonoBehaviour
 
     void ShowFalseObjects()
     {
-        falseObjects = GameObject.FindGameObjectsWithTag("Square");
+        //falseObjects = GameObject.FindGameObjectsWithTag("Square");
         foreach (GameObject obj in falseObjects)
         {
             obj.GetComponent<SpriteRenderer>().enabled = true;
+            obj.GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
+
+    public void TruePath()
+    {
+        nextStep +=1; //делаем активный следующий елемент массива
+        if (nextStep < trueObjects.Length) // fix след шаг не должен быть больше массива
+        {
+            trueObjects[nextStep].GetComponent<BoxCollider2D>().enabled = true;
+            Debug.Log("nextStep: " + nextStep);
         }
     }
 
