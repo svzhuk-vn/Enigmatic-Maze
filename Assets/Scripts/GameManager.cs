@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float pathSpeed = 1;
     //[SerializeField] private float time = 10;
     [SerializeField] private int nextStep = 0;
+    [SerializeField] public bool gameStart = false;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
         {
             obj.GetComponent<SpriteRenderer>().enabled = true;
             obj.GetComponent<BoxCollider2D>().enabled = true;
+            gameStart = true;
         }
     }
 
