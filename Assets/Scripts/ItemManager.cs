@@ -5,25 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class ItemManager : MonoBehaviour
 {
-
-    public bool condition;
+    [SerializeField] public bool condition;
     GameManager gameManager;
     GameObject endPath;
     LevelManager levelManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         levelManager = GameObject.Find("GameManager").GetComponent<LevelManager>();
         endPath = gameManager.endPoint;
-    }
-
-    // Update is called once per frame
-    void Update()
-
-    {
-        
     }
 
     private void OnMouseDown() //OnMouseEnter works fine

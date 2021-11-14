@@ -5,55 +5,38 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     [Header("Set right way")]
-    public GameObject[] trueObjects; //в инспекторе устанавливаем friendly path
+    [SerializeField] private GameObject[] trueObjects;
     [Header("Set wrong way")]
-    public GameObject[] falseObjects; //в инспекторе устанавливаем enemy
-    public GameObject startPoint;
-    public GameObject endPoint;
-    [SerializeField] private float speed = 1;
-    [SerializeField] private float time = 10;
+    [SerializeField] private GameObject[] falseObjects;
+    [Tooltip("Set start point")]
+    [SerializeField] private GameObject startPoint;
+    [Tooltip("Set end point")]
+    [SerializeField] public GameObject endPoint;
+    [SerializeField] private float pathSpeed = 1;
+    //[SerializeField] private float time = 10;
     [SerializeField] private int nextStep = 0;
-    //private ItemManager script;
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ShowTrueObjects()); 
-        time = (float)trueObjects.Length;
-        Invoke("ShowFalseObjects", time);
-        //trueObjects[0].GetComponent<BoxCollider2D>().enabled = true; //start point
+        //time = (float)trueObjects.Length;
+        Invoke("ShowFalseObjects", trueObjects.Length);
         startPoint.GetComponent<BoxCollider2D>().enabled = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
     }
 
     IEnumerator ShowTrueObjects()
     {
-        /*foreach (GameObject trueObject in gameObjects)
-        {
-            trueObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f);
-        }*/
-
         for (int i = 0; i < trueObjects.Length; i++)
         {
-            //gameObjects[i].GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
-            //trueObjects[i].SetActive(true);
             trueObjects[i].GetComponent<SpriteRenderer>().enabled = true;
             trueObjects[i].GetComponent<ItemManager>().condition = true; //устанавливаем состояние для frienly square
-            yield return new WaitForSeconds(speed);
+            yield return new WaitForSeconds(pathSpeed);
         }                     
-
     }
 
     void ShowFalseObjects()
     {
-        //falseObjects = GameObject.FindGameObjectsWithTag("Square");
         foreach (GameObject obj in falseObjects)
         {
             obj.GetComponent<SpriteRenderer>().enabled = true;
@@ -70,5 +53,4 @@ public class GameManager : MonoBehaviour
             Debug.Log("nextStep: " + nextStep);
         }
     }
-
 }
