@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] falseObjects; //в инспекторе устанавливаем enemy
     public GameObject startPoint;
     public GameObject endPoint;
+    [SerializeField] private float speed = 1;
     [SerializeField] private float time = 10;
     [SerializeField] private int nextStep = 0;
     //private ItemManager script;
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ChangeActive()); 
+        StartCoroutine(ShowTrueObjects()); 
         time = (float)trueObjects.Length;
         Invoke("ShowFalseObjects", time);
         //trueObjects[0].GetComponent<BoxCollider2D>().enabled = true; //start point
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
        
     }
 
-    IEnumerator ChangeActive()
+    IEnumerator ShowTrueObjects()
     {
         /*foreach (GameObject trueObject in gameObjects)
         {
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
             //trueObjects[i].SetActive(true);
             trueObjects[i].GetComponent<SpriteRenderer>().enabled = true;
             trueObjects[i].GetComponent<ItemManager>().condition = true; //устанавливаем состояние для frienly square
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(speed);
         }                     
 
     }
