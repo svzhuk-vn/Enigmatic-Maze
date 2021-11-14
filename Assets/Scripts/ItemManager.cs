@@ -19,7 +19,7 @@ public class ItemManager : MonoBehaviour
 
     private void OnMouseDown() //OnMouseEnter works fine
     {
-        if (condition)
+        if (condition && gameManager.gameStart)
         {
             Debug.Log("True path!");
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 1f, 0f);
@@ -28,7 +28,7 @@ public class ItemManager : MonoBehaviour
             this.GetComponent<BoxCollider2D>().enabled = false; //fix только одно нажатие на кнопку
         }
 
-        else if (!condition)
+        else if (!condition && gameManager.gameStart)
         {
             Debug.Log("False path!");
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
