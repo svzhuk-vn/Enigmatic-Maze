@@ -9,11 +9,13 @@ public class ItemManager : MonoBehaviour
     public bool condition;
     GameManager gameManager;
     GameObject endPath;
+    LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        levelManager = GameObject.Find("GameManager").GetComponent<LevelManager>();
         endPath = gameManager.endPoint;
     }
 
@@ -24,7 +26,7 @@ public class ItemManager : MonoBehaviour
         
     }
 
-    private void OnMouseDown()
+    private void OnMouseDown() //OnMouseEnter works fine
     {
         if (condition)
         {
@@ -39,11 +41,13 @@ public class ItemManager : MonoBehaviour
         {
             Debug.Log("False path!");
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
+            levelManager.Restart();
         }
 
         if (this.name == endPath.name)
         {
             Debug.Log(">>>YouWIn<<<");
+            levelManager.NextLevel(0);
         }
     }
 }
