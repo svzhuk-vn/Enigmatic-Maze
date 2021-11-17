@@ -13,11 +13,11 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        //levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         endPath = gameManager.endPoint;
     }
 
-    private void OnMouseEnter() //OnMouseEnter works fine
+    private void OnMouseDown() //OnMouseEnter works fine
     {
         if (condition && gameManager.gameStart)
         {

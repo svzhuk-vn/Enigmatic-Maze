@@ -6,8 +6,15 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] public int nextLevel = 0;
-    private void Start()
+    public static LevelManager Instance;
+    private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
     public void Restart()
