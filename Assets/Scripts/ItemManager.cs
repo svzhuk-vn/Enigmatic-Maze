@@ -32,7 +32,10 @@ public class ItemManager : MonoBehaviour
         {
             Debug.Log("False path!");
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
-            levelManager.Restart();
+            //levelManager.Restart();
+            gameManager.gameStart = false;
+            gameManager.textRestart.SetActive(true);
+            StartCoroutine(levelManager.Restart(5f));
         }
 
         if (this.name == endPath.name)
