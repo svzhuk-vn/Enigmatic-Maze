@@ -9,11 +9,13 @@ public class ItemManager : MonoBehaviour
     GameManager gameManager;
     GameObject endPath;
     LevelManager levelManager;
+    SoundManager soundManager;
 
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         endPath = gameManager.endPoint;
     }
 
@@ -35,12 +37,14 @@ public class ItemManager : MonoBehaviour
             //levelManager.Restart();
             gameManager.gameStart = false;
             gameManager.textRestart.gameObject.SetActive(true);
+            soundManager.PlaySound(soundManager.loseSound);
             StartCoroutine(levelManager.Restart(3f));
         }
 
         if (this.name == endPath.name)
         {
-            Debug.Log(">>>YouWIn<<<");
+            Debug.Log("YouWin!");
+            soundManager.PlaySound(soundManager.winSound);
             levelManager.nextLevel += 1;
             levelManager.NextLevel(levelManager.nextLevel);
         }
