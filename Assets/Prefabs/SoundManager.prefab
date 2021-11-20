@@ -141,3 +141,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loseSound: {fileID: 8300000, guid: 8979abba78fd66f4f8323efad4837781, type: 3}
+  winSound: {fileID: 8300000, guid: 63a7e94827cc6534da4c803fd15ba389, type: 3}

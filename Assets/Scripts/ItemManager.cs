@@ -46,7 +46,8 @@ public class ItemManager : MonoBehaviour
             Debug.Log("YouWin!");
             soundManager.PlaySound(soundManager.winSound);
             levelManager.nextLevel += 1;
-            levelManager.NextLevel(levelManager.nextLevel);
+            gameManager.gameStart = false;
+            StartCoroutine(levelManager.NextLevel(2f, levelManager.nextLevel));
         }
     }
 }
