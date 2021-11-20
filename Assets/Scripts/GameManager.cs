@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("Set start point")]
     [SerializeField] private GameObject startPoint;
     [Tooltip("Set end point")]
-    [SerializeField] public GameObject endPoint;
+    public GameObject endPoint;
     [SerializeField] private float pathSpeed = 1;
     //[SerializeField] private float time = 10;
     private int nextStep = 0;
@@ -25,12 +25,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(ShowPathObjects()); 
-        //time = (float)pathObjects.Length;
         Invoke("ShowAllObjects", pathObjects.Length * pathSpeed);
         startPoint.GetComponent<BoxCollider2D>().enabled = true;
         textRestart.gameObject.SetActive(false);
         currentLevel.text = SceneManager.GetActiveScene().name;
-        
     }
 
     IEnumerator ShowPathObjects()

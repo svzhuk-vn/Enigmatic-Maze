@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] public int nextLevel = 1;
+    public int nextLevel;
     public static LevelManager Instance;
     
     private void Awake()
@@ -17,6 +17,10 @@ public class LevelManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start()
+    {
         nextLevel = 1;
     }
     public void Restart()

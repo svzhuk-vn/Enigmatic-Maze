@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class ItemManager : MonoBehaviour
 {
-    [SerializeField] public bool condition;
+    public bool condition;
     GameManager gameManager;
     GameObject endPath;
     LevelManager levelManager;
@@ -34,7 +34,6 @@ public class ItemManager : MonoBehaviour
         {
             Debug.Log("False path!");
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
-            //levelManager.Restart();
             gameManager.gameStart = false;
             gameManager.textRestart.gameObject.SetActive(true);
             soundManager.PlaySound(soundManager.loseSound);
