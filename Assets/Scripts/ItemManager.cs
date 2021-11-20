@@ -35,7 +35,7 @@ public class ItemManager : MonoBehaviour
             //levelManager.Restart();
             gameManager.gameStart = false;
             gameManager.textRestart.gameObject.SetActive(true);
-            StartCoroutine(levelManager.Restart(5f));
+            StartCoroutine(levelManager.Restart(3f));
         }
 
         if (this.name == endPath.name)

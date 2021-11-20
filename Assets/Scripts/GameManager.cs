@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(ShowPathObjects()); 
         //time = (float)pathObjects.Length;
-        Invoke("ShowAllObjects", pathObjects.Length);
+        Invoke("ShowAllObjects", pathObjects.Length * pathSpeed);
         startPoint.GetComponent<BoxCollider2D>().enabled = true;
         textRestart.gameObject.SetActive(false);
         currentLevel.text = SceneManager.GetActiveScene().name;
@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
         foreach (GameObject obj in allObjects)
         {
             obj.GetComponent<SpriteRenderer>().enabled = true;
-            obj.GetComponent<BoxCollider2D>().enabled = true;
+            if (obj.GetComponent<ItemManager>().condition == false) 
+                obj.GetComponent<BoxCollider2D>().enabled = true;
             gameStart = true;
         }
     }
