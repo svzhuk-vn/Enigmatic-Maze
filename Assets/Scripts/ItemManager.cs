@@ -34,7 +34,7 @@ public class ItemManager : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
             //levelManager.Restart();
             gameManager.gameStart = false;
-            gameManager.textRestart.SetActive(true);
+            gameManager.textRestart.gameObject.SetActive(true);
             StartCoroutine(levelManager.Restart(5f));
         }
 

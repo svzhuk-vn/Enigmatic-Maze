@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -18,7 +19,8 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private float time = 10;
     private int nextStep = 0;
     public bool gameStart = false;
-    public GameObject textRestart;
+    public Text textRestart;
+    [SerializeField] private Text currentLevel;
 
     void Start()
     {
@@ -26,7 +28,9 @@ public class GameManager : MonoBehaviour
         //time = (float)pathObjects.Length;
         Invoke("ShowAllObjects", pathObjects.Length);
         startPoint.GetComponent<BoxCollider2D>().enabled = true;
-        textRestart.SetActive(false);
+        textRestart.gameObject.SetActive(false);
+        currentLevel.text = SceneManager.GetActiveScene().name;
+        
     }
 
     IEnumerator ShowPathObjects()
@@ -47,7 +51,6 @@ public class GameManager : MonoBehaviour
             obj.GetComponent<SpriteRenderer>().enabled = true;
             obj.GetComponent<BoxCollider2D>().enabled = true;
             gameStart = true;
-            
         }
     }
 
