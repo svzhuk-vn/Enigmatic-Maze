@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class ItemManager : MonoBehaviour
+public class ItemManager : MonoBehaviour, IPointerEnterHandler
 {
     public bool condition;
     GameManager gameManager;
@@ -19,7 +20,7 @@ public class ItemManager : MonoBehaviour
         endPath = gameManager.endPoint;
     }
 
-    private void OnMouseDown() //OnMouseEnter works fine
+    private void OnClick() //OnMouseEnter works fine
     {
         if (condition && gameManager.gameStart)
         {
@@ -48,5 +49,10 @@ public class ItemManager : MonoBehaviour
             gameManager.gameStart = false;
             StartCoroutine(levelManager.NextLevel(2f, levelManager.nextLevel));
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnClick();
     }
 }
